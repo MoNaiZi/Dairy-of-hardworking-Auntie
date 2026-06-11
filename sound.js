@@ -4,10 +4,10 @@ const Sound = (() => {
   let bgmRunning = false;
 
   // 预加载音频元素
-  const coinAudio = new Audio("金币.mp3");
+  const coinAudio = new Audio("coin.mp3");
   coinAudio.preload = "auto";
 
-  const chatterAudio = new Audio("学生叽里咕噜.mp3");
+  const chatterAudio = new Audio("chatter.mp3");
   chatterAudio.preload = "auto";
 
   /* ---------- 背景音乐 ---------- */
@@ -15,7 +15,7 @@ const Sound = (() => {
     if (bgmRunning) return;
     bgmRunning = true;
     if (!bgm) {
-      bgm = new Audio("背景音乐.mp3");
+      bgm = new Audio("bgm.mp3");
       bgm.loop = true;
       bgm.volume = 0.4;
     }
