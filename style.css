@@ -242,7 +242,10 @@ body {
 .gsb-text {
   display: flex; flex-direction: column; gap: 1px;
   white-space: nowrap;
+  opacity: 0;
+  transition: opacity .3s ease .1s;
 }
+.github-star-badge:hover .gsb-text { opacity: 1; }
 .gsb-text b {
   font-family: 'ZCOOL KuaiLe', cursive;
   font-size: 14px; font-weight: 400; letter-spacing: 1px;
