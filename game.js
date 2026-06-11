@@ -140,12 +140,13 @@ function trafficDelay(ms) {
 /* ================= 0. 背景音乐自动启动 ================= */
 (function initBGM() {
   function tryPlay() {
+    Sound.unlock(); // H5 音频解锁
     Sound.playBGM();
     document.removeEventListener("click", tryPlay);
     document.removeEventListener("touchstart", tryPlay);
   }
   document.addEventListener("click", tryPlay);
-  document.addEventListener("touchstart", tryPlay);
+  document.addEventListener("touchend", tryPlay); // iOS 只认 touchend/click 为有效手势
 })();
 
 /* ================= 1. 标题 ================= */

@@ -129,6 +129,12 @@
     </div>
 
   </div>
+
+  <!-- 音频元素（iOS 必须用 DOM 中的 <audio> 标签，不能 JS new Audio()） -->
+  <audio id="audio-bgm" src="bgm.mp3" loop playsinline preload="auto" hidden></audio>
+  <audio id="audio-coin" src="coin.mp3" playsinline preload="auto" hidden></audio>
+  <audio id="audio-chatter" src="chatter.mp3" playsinline preload="auto" hidden></audio>
+
   <script src="sound.js"></script>
   <script src="game.js"></script>
 </body>
