@@ -257,7 +257,7 @@ const PROCESS_STEPS = [
   },
   {
     title: "出锅定型",
-    desc: "成品比生鸭腿足足膨胀 20%~50%，肥大油亮，往灯下一摆——「这么大，肯定是鹅腿！」",
+    desc: "成品比生鸭腿足足膨胀 20%~50%，肥大油亮，往灯下一摆——「这么大，肯定是鹅腿！」北大高材生也看不出区别。",
     duration: 2600,
     apply: () => {},
     finish: (leg) => {
@@ -275,7 +275,7 @@ function enterKitchen() {
   if (state.honest) {
     // 良心模式：正品鹅腿不用造假，但阿姨还是要卤
     PROCESS_STEPS[2].desc =
-      "正品鹅腿本来就大，老老实实卤熟就行。阿姨看着锅，心里有点空：这锅……一分钱不赚啊。";
+      "正品鹅腿本来就大，卤熟就行。阿姨看着锅，心里有点空：一根就赚1块，卖100根才100块……大学生还以为鹅腿多金贵呢。";
   }
   loadStep();
 }
@@ -324,48 +324,63 @@ $("btn-process").onclick = () => {
 
 const STUDENTS = [
   {
-    name: "男同学",
+    name: "卷王",
     hair: "short",
     color: "#3f6fb5",
-    ask: "阿姨，来根鹅腿！跑完晚自习就馋这口。",
+    ask: "阿姨！赶紧的！吃完还要回去卷，今晚不刷到凌晨三点不算完。",
   },
   {
-    name: "女同学",
+    name: "小红书博主",
     hair: "long",
     color: "#c75b8a",
-    ask: "阿姨~ 还有鹅腿吗？给我留一根！",
+    ask: "阿姨~ 给我挑根大的！我要拍照发小红书，标题就写「北大鹅腿yyds」！",
   },
   {
-    name: "考研学长",
+    name: "考研气氛组",
     hair: "short",
     color: "#4a8c5f",
-    ask: "阿姨，一根鹅腿，今晚还要刷三套题。",
+    ask: "阿姨，一根鹅腿！吃完就回去看书——我是说，真的会看的那种。",
   },
   {
-    name: "社团学妹",
+    name: "学生会干部",
     hair: "long",
     color: "#8a6fc7",
-    ask: "阿姨，听说你家鹅腿全北大第一！",
+    ask: "阿姨！以后学生会招新就蹲你摊子旁边，人流量比百团大战还高！",
   },
   {
     name: "留学生",
     hair: "short",
     color: "#c2762e",
-    ask: "Auntie！Goose leg！One！谢谢！",
+    ask: "Auntie！Goose leg！I don't care if it's duck！好吃就行！",
+  },
+  {
+    name: "摸鱼实习生",
+    hair: "short",
+    color: "#d4883e",
+    ask: "阿姨救我，实习一天啥也没干，饿得头昏眼花……来根鹅腿续命！",
+  },
+  {
+    name: "论文焦虑症",
+    hair: "long",
+    color: "#5e7e9b",
+    ask: "阿姨有鹅腿吗？导师说论文再不改就延毕，我想吃点好的……",
   },
 ];
 
 const AUNTIE_REPLIES = [
-  "好嘞！刚出锅的「鹅腿」，又肥又大！",
-  "拿好咯，趁热吃，凉了就不香了！",
-  "同学慢用啊，明天还来这个点儿！",
-  "一根16，扫码现金都行！",
+  "好嘞！刚出锅的「鹅腿」，北大高材生都分不清是鸭是鹅！",
+  "拿去！吃完好好卷，长大了给阿姨儿子打工！",
+  "一根16，你爸妈一个月给你三千生活费够花吗？",
+  "同学，未来年薪百万，现在省什么省？再來一根！",
+  "又肥又大，比你们的学历含金量高多了！",
 ];
 
 const THOUGHTS = [
   "一天卖1000根，一根赚14.5，就是14500……",
-  "一年上四休三，干208天，一共300万！",
-  "300万……儿子的路虎，稳了。",
+  "一年干208天，一共300万——比北大毕业生起薪高多了！",
+  "300万……儿子小学没毕业也能开路虎，哈哈哈哈。",
+  "这帮孩子天天卷，卷到最后还不是来给我送钱？",
+  "985、211……最后还不如一个卖鸭腿的阿姨。",
 ];
 
 let customerTimer = null;
@@ -442,16 +457,24 @@ function nextCustomer() {
 
 function playGreenScene() {
   setTimeout(() => {
-    say("bubble-student", "女同学", "咦？阿姨……怎么这鹅腿是<b>绿色</b>的呀？");
+    say(
+      "bubble-student",
+      "小红书博主",
+      "阿姨……这鹅腿怎么是<b>绿色</b>的呀？发出去会不会掉粉？",
+    );
     Sound.studentChatter();
     setTimeout(() => {
       say(
         "bubble-auntie",
         "鹅腿阿姨",
-        "用蔬菜汁腌的，纯天然！吃了还补维生素呢！",
+        "蔬菜汁腌的！纯天然无添加，北大化学系都验不出来！",
       );
       setTimeout(() => {
-        say("bubble-student", "女同学", "哦哦，写写阿姨！");
+        say(
+          "bubble-student",
+          "小红书博主",
+          "哇那更健康了！我标题改成「北大限定·抹茶鹅腿」！",
+        );
         Sound.studentChatter();
         $("btn-sell").classList.remove("hidden");
         $("btn-sell").disabled = false;
@@ -486,7 +509,7 @@ $("btn-sell").onclick = () => {
     setTimeout(() => {
       hideBubbles();
       const t = state.honest
-        ? "良心是无价的……但路虎，是有价的。"
+        ? "良心是无价的……但这帮小孩根本不懂，他们只在乎好不好吃。"
         : THOUGHTS[thoughtIndex % THOUGHTS.length];
       thoughtIndex++;
       say("bubble-think", "阿姨的内心戏", t);
@@ -516,15 +539,15 @@ function showSpeechEvent() {
   updateBoard();
 
   const summary = state.honest
-    ? `你卖出了 <b>30 根正品鹅腿</b>，北大同学联名邀请阿姨进校演讲。<br>「良心摊主」的故事传遍未名湖畔——虽然路虎还是没着落。`
-    : `你卖出了 <b>30 根「鹅腿」</b>，北大同学排队求阿姨分享创业心得。<br>阿姨站在讲台上，台下掌声雷动：「一根鸭腿，也能卤出鹅腿的人生！」`;
+    ? `你卖出了 <b>30 根正品鹅腿</b>，北大同学联名邀请阿姨进校演讲。<br>「良心摊主」的故事传遍未名湖畔——虽然路虎还是没着落，但起码睡得着觉。`
+    : `你卖出了 <b>30 根「鹅腿」</b>，这帮傻孩子排队请阿姨分享创业心得。<br>阿姨站在讲台上，台下掌声雷动：「你们读四年书，不如我卖三个月鸭腿！」`;
 
   showModal(
     "🏆 成就解锁：北大演讲",
     summary +
       `<br><br><b style="color:#9e2b2b">声望值 +10,000</b>（当前 <b>${state.reputation.toLocaleString()}</b>）<br>` +
       `<b style="color:#2e7d44">人流量 +1000%</b>（当前 <b>${Math.round(state.footTrafficMult * 100)}%</b>）<br><br>` +
-      `<span style="font-size:13px;color:#6b5b3e">同学们蜂拥而至，北大西南门快被挤爆了……</span>`,
+      `<span style="font-size:13px;color:#6b5b3e">同学们蜂拥而至，北大西南门快被挤爆了……看来学历真的不如流量。</span>`,
     [
       {
         label: "继续摆摊，趁热打铁",
@@ -541,8 +564,8 @@ function showSpeechEvent() {
 
 function showUnlock() {
   const summary = state.honest
-    ? `你卖出了 10 根<b>正品鹅腿</b>，收益 <b>¥${state.profit.toFixed(1)}</b>。<br>阿姨叹了口气：良心摊主，路虎还是买不起，但睡得着觉。`
-    : `你卖出了 10 根「鹅腿」，净赚 <b>¥${state.profit.toFixed(1)}</b>。<br>按这个速度，路虎的车钥匙已经在路上了……`;
+    ? `你卖出了 10 根<b>正品鹅腿</b>，收益 <b>¥${state.profit.toFixed(1)}</b>。<br>阿姨叹了口气：每根赚1块，不如去送外卖。`
+    : `你卖出了 10 根「鹅腿」，净赚 <b>¥${state.profit.toFixed(1)}</b>。<br>这帮大学生真好骗，鸭腿当鹅腿卖，一个个吃得比谁都香。`;
   showModal("🎉 解锁新副本：国贸", summary, [
     {
       label: "继续在北大卖",
