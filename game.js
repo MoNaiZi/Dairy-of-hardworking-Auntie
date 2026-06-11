@@ -543,26 +543,15 @@ function showUnlock() {
   const summary = state.honest
     ? `你卖出了 10 根<b>正品鹅腿</b>，收益 <b>¥${state.profit.toFixed(1)}</b>。<br>阿姨叹了口气：良心摊主，路虎还是买不起，但睡得着觉。`
     : `你卖出了 10 根「鹅腿」，净赚 <b>¥${state.profit.toFixed(1)}</b>。<br>按这个速度，路虎的车钥匙已经在路上了……`;
-  showModal(
-    "🎉 解锁新副本：国贸",
-    summary +
-      `<br><br><b style="font-size:20px">新游戏副本，敬请期待</b><br><span style="font-size:13px;color:#8a7a5c">下一站：把鹅腿卖给月薪三千的白领</span><br><br><span style="font-size:14px;color:#6b5b3e">⭐ 玩得开心？去 GitHub 点 Star：</span><br><a href="${GITHUB_REPO}" target="_blank" rel="noopener noreferrer" style="color:#9e2b2b;font-size:13px;word-break:break-all">${GITHUB_REPO}</a>`,
-    [
-      {
-        label: "继续在北大卖",
-        onClick: () => setTimeout(nextCustomer, trafficDelay(800)),
-      },
-      {
-        label: "⭐ GitHub 点 Star",
-        ghost: true,
-        onClick: () =>
-          window.open(GITHUB_REPO, "_blank", "noopener,noreferrer"),
-      },
-      {
-        label: "重新开始",
-        ghost: true,
-        onClick: () => location.reload(),
-      },
-    ],
-  );
+  showModal("🎉 解锁新副本：国贸", summary, [
+    {
+      label: "继续在北大卖",
+      onClick: () => setTimeout(nextCustomer, trafficDelay(800)),
+    },
+    {
+      label: "重新开始",
+      ghost: true,
+      onClick: () => location.reload(),
+    },
+  ]);
 }

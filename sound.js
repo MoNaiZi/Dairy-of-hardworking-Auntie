@@ -17,7 +17,7 @@ const Sound = (() => {
     if (!bgm) {
       bgm = new Audio("背景音乐.mp3");
       bgm.loop = true;
-      bgm.volume = 0.6;
+      bgm.volume = 0.4;
     }
     bgm.currentTime = 0;
     bgm.play().catch(() => {});
