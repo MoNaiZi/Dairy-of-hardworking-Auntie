@@ -1,139 +1,145 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>鹅腿阿姨创业日记</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@300;500;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div id="game">
 
-  <!-- GitHub Star 徽章（右上角常驻，不遮挡游戏） -->
-  <a id="github-star-badge" class="github-star-badge" href="https://github.com/super8848-AI/Dairy-of-hardworking-Auntie" target="_blank" rel="noopener noreferrer" title="github.com/super8848-AI/Dairy-of-hardworking-Auntie">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>鹅腿阿姨创业日记</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@300;500;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="game">
+
+    <!-- GitHub Star 徽章（右上角常驻，不遮挡游戏） -->
+    <!-- <a id="github-star-badge" class="github-star-badge" href="https://github.com/super8848-AI/Dairy-of-hardworking-Auntie" target="_blank" rel="noopener noreferrer" title="github.com/super8848-AI/Dairy-of-hardworking-Auntie">
     <svg class="gsb-octocat" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
     <span class="gsb-star">★</span>
     <span class="gsb-text">
       <b>点个 Star 支持阿姨</b>
       <i>github.com/super8848-AI/Dairy-of-hardworking-Auntie</i>
     </span>
-  </a>
+  </a> -->
 
-  <!-- 收益计数板（左上角） -->
-  <div id="scoreboard" class="hidden">
-    <div class="board-title">今日收益</div>
-    <div class="board-money">¥ <span id="profit">0.0</span></div>
-    <div class="board-sub">已售出 <span id="sold-count">0</span> 根「鹅腿」</div>
-    <div class="board-sub board-cost">单根成本 ¥<span id="cost-each">1.5</span> ｜ 售价 ¥16</div>
-    <div class="board-stats">
-      <span>声望 <b id="reputation">0</b></span>
-      <span>人流量 <b id="foot-traffic">100%</b></span>
+    <!-- 收益计数板（左上角） -->
+    <div id="scoreboard" class="hidden">
+      <div class="board-title">今日收益</div>
+      <div class="board-money">¥ <span id="profit">0.0</span></div>
+      <div class="board-sub">已售出 <span id="sold-count">0</span> 根「鹅腿」</div>
+      <div class="board-sub board-cost">单根成本 ¥<span id="cost-each">1.5</span> ｜ 售价 ¥16</div>
+      <div class="board-stats">
+        <span>声望 <b id="reputation">0</b></span>
+        <span>人流量 <b id="foot-traffic">100%</b></span>
+      </div>
+      <div class="board-achievements" id="achievement-list"></div>
     </div>
-    <div class="board-achievements" id="achievement-list"></div>
-  </div>
 
-  <!-- 城市背景层（所有场景共用） -->
-  <div id="sky"></div>
-  <div id="stars"></div>
-  <div class="skyline skyline-far"></div>
-  <div class="skyline skyline-near"></div>
-  <div id="ground"></div>
+    <!-- 城市背景层（所有场景共用） -->
+    <div id="sky"></div>
+    <div id="stars"></div>
+    <div class="skyline skyline-far"></div>
+    <div class="skyline skyline-near"></div>
+    <div id="ground"></div>
 
-  <!-- ============ 场景：标题 ============ -->
-  <section id="scene-title" class="scene active">
-    <h1 class="game-title">鹅腿阿姨<span>创业日记</span></h1>
-    <p class="game-subtitle">—— 一根「鹅腿」的诞生 ——</p>
-    <div class="title-cart" id="title-cart"></div>
-    <button class="btn btn-big" id="btn-start">开始摆摊</button>
-    <p class="disclaimer">* 本游戏纯属讽刺：鸭腿再肥，也变不成鹅腿。</p>
-  </section>
+    <!-- ============ 场景：标题 ============ -->
+    <section id="scene-title" class="scene active">
+      <h1 class="game-title">鹅腿阿姨<span>创业日记</span></h1>
+      <p class="game-subtitle">—— 一根「鹅腿」的诞生 ——</p>
+      <div class="title-cart" id="title-cart"></div>
+      <button class="btn btn-big" id="btn-start">开始摆摊</button>
+      <p class="disclaimer">* 本游戏纯属讽刺：鸭腿再肥，也变不成鹅腿。</p>
+    </section>
 
-  <!-- ============ 场景：菜市场 ============ -->
-  <section id="scene-market" class="scene">
-    <div class="scene-label">📍 凌晨 4:30 · 菜市场冷冻区</div>
-    <div class="market-stall">
-      <div class="stall-sign">老王冷冻批发</div>
-      <div class="freezer">
-        <div class="freezer-item" id="pick-duck">
-          <div class="leg-icon duck-leg"></div>
-          <div class="item-name">冷冻鸭腿</div>
-          <div class="item-price">¥1.5 / 根</div>
-          <div class="item-tag tag-shady">利润空间巨大</div>
+    <!-- ============ 场景：菜市场 ============ -->
+    <section id="scene-market" class="scene">
+      <div class="scene-label">📍 凌晨 4:30 · 菜市场冷冻区</div>
+      <div class="market-stall">
+        <div class="stall-sign">老王冷冻批发</div>
+        <div class="freezer">
+          <div class="freezer-item" id="pick-duck">
+            <div class="leg-icon duck-leg"></div>
+            <div class="item-name">冷冻鸭腿</div>
+            <div class="item-price">¥1.5 / 根</div>
+            <div class="item-tag tag-shady">利润空间巨大</div>
+          </div>
+          <div class="freezer-item" id="pick-goose">
+            <div class="leg-icon goose-leg"></div>
+            <div class="item-name">正品鹅腿</div>
+            <div class="item-price">¥15 / 根</div>
+            <div class="item-tag tag-honest">良心之选</div>
+          </div>
         </div>
-        <div class="freezer-item" id="pick-goose">
-          <div class="leg-icon goose-leg"></div>
-          <div class="item-name">正品鹅腿</div>
-          <div class="item-price">¥15 / 根</div>
-          <div class="item-tag tag-honest">良心之选</div>
+      </div>
+      <div class="dialog-box" id="market-dialog">
+        <div class="dialog-speaker">鹅腿阿姨</div>
+        <div class="dialog-text">进货是门学问……选鸭腿还是鹅腿呢？</div>
+      </div>
+    </section>
+
+    <!-- ============ 场景：骑车（回家 / 去北大 复用） ============ -->
+    <section id="scene-ride" class="scene">
+      <div class="scene-label" id="ride-label">🚲 蹬着三轮车回家……</div>
+      <div class="ride-road"></div>
+      <div class="ride-cart" id="ride-cart"></div>
+    </section>
+
+    <!-- ============ 场景：厨房加工 ============ -->
+    <section id="scene-kitchen" class="scene">
+      <div class="scene-label">🏠 昌平区小别野 · 深度加工中</div>
+      <div class="kitchen-bench">
+        <div class="machine" id="machine">
+          <div class="machine-drum" id="machine-drum"></div>
+          <div class="machine-label" id="machine-label">真空滚揉机</div>
         </div>
+        <div class="pot hidden" id="pot">
+          <div class="pot-steam"><i></i><i></i><i></i></div>
+          <div class="pot-body">老卤</div>
+        </div>
+        <div class="bench-leg" id="bench-leg"></div>
+      </div>
+      <div class="process-panel">
+        <div class="process-step" id="process-step">第 1 步 / 共 3 步</div>
+        <div class="process-title" id="process-title"></div>
+        <div class="process-desc" id="process-desc"></div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <button class="btn" id="btn-process">开始加工</button>
+      </div>
+    </section>
+
+    <!-- ============ 场景：北大门口售卖 ============ -->
+    <section id="scene-sell" class="scene">
+      <div class="pku-gate">
+        <div class="gate-roof"></div>
+        <div class="gate-plaque">北京大学</div>
+        <div class="gate-pillar left"></div>
+        <div class="gate-pillar right"></div>
+      </div>
+      <div class="sell-cart" id="sell-cart"></div>
+      <div class="student-spot" id="student-spot"></div>
+      <div class="bubble bubble-student hidden" id="bubble-student"></div>
+      <div class="bubble bubble-auntie hidden" id="bubble-auntie"></div>
+      <div class="bubble bubble-think hidden" id="bubble-think"></div>
+      <button class="btn btn-sell hidden" id="btn-sell">递上「鹅腿」 ¥16</button>
+      <div class="float-layer" id="float-layer"></div>
+    </section>
+
+    <!-- ============ 弹窗 ============ -->
+    <div class="modal-mask hidden" id="modal">
+      <div class="modal-card">
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-actions" id="modal-actions"></div>
       </div>
     </div>
-    <div class="dialog-box" id="market-dialog">
-      <div class="dialog-speaker">鹅腿阿姨</div>
-      <div class="dialog-text">进货是门学问……选鸭腿还是鹅腿呢？</div>
-    </div>
-  </section>
 
-  <!-- ============ 场景：骑车（回家 / 去北大 复用） ============ -->
-  <section id="scene-ride" class="scene">
-    <div class="scene-label" id="ride-label">🚲 蹬着三轮车回家……</div>
-    <div class="ride-road"></div>
-    <div class="ride-cart" id="ride-cart"></div>
-  </section>
-
-  <!-- ============ 场景：厨房加工 ============ -->
-  <section id="scene-kitchen" class="scene">
-    <div class="scene-label">🏠 昌平区小别野 · 深度加工中</div>
-    <div class="kitchen-bench">
-      <div class="machine" id="machine">
-        <div class="machine-drum" id="machine-drum"></div>
-        <div class="machine-label" id="machine-label">真空滚揉机</div>
-      </div>
-      <div class="pot hidden" id="pot">
-        <div class="pot-steam"><i></i><i></i><i></i></div>
-        <div class="pot-body">老卤</div>
-      </div>
-      <div class="bench-leg" id="bench-leg"></div>
-    </div>
-    <div class="process-panel">
-      <div class="process-step" id="process-step">第 1 步 / 共 3 步</div>
-      <div class="process-title" id="process-title"></div>
-      <div class="process-desc" id="process-desc"></div>
-      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-      <button class="btn" id="btn-process">开始加工</button>
-    </div>
-  </section>
-
-  <!-- ============ 场景：北大门口售卖 ============ -->
-  <section id="scene-sell" class="scene">
-    <div class="pku-gate">
-      <div class="gate-roof"></div>
-      <div class="gate-plaque">北京大学</div>
-      <div class="gate-pillar left"></div>
-      <div class="gate-pillar right"></div>
-    </div>
-    <div class="sell-cart" id="sell-cart"></div>
-    <div class="student-spot" id="student-spot"></div>
-    <div class="bubble bubble-student hidden" id="bubble-student"></div>
-    <div class="bubble bubble-auntie hidden" id="bubble-auntie"></div>
-    <div class="bubble bubble-think hidden" id="bubble-think"></div>
-    <button class="btn btn-sell hidden" id="btn-sell">递上「鹅腿」 ¥16</button>
-    <div class="float-layer" id="float-layer"></div>
-  </section>
-
-  <!-- ============ 弹窗 ============ -->
-  <div class="modal-mask hidden" id="modal">
-    <div class="modal-card">
-      <div class="modal-title" id="modal-title"></div>
-      <div class="modal-body" id="modal-body"></div>
-      <div class="modal-actions" id="modal-actions"></div>
-    </div>
   </div>
-
-</div>
-<script src="game.js"></script>
+  <script src="game.js"></script>
 </body>
+
 </html>
