@@ -54,7 +54,7 @@ const Sound = (() => {
   function playBGM() {
     if (!unlocked || bgmRunning) return;
     bgmRunning = true;
-    bgm.volume = 0.4;
+    bgm.volume = 0.8;
   }
 
   function stopBGM() {
@@ -67,6 +67,7 @@ const Sound = (() => {
   /* ---------- 金币音效 ---------- */
   function coinSound() {
     if (!unlocked) return;
+    coin.volume = 1.0;
     coin.currentTime = 0;
     coin.play().catch(() => {});
   }
@@ -74,6 +75,7 @@ const Sound = (() => {
   /* ---------- 学生叽里咕噜 ---------- */
   function studentChatter() {
     if (!unlocked) return;
+    chatter.volume = 1.0;
     chatter.currentTime = 0;
     chatter.play().catch(() => {});
   }
@@ -103,7 +105,7 @@ const Sound = (() => {
       lpFilter.type = "lowpass";
       lpFilter.frequency.value = 200;
       const gainNode = c.createGain();
-      gainNode.gain.value = 0.35;
+      gainNode.gain.value = 0.5;
       source.connect(lpFilter);
       lpFilter.connect(gainNode);
       gainNode.connect(c.destination);
