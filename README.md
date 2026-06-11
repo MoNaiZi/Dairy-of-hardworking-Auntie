@@ -20,6 +20,11 @@
 
 手机或电脑浏览器打开即可，无需安装。
 
+## 发布到星匣平台
+
+春季赛活动页：https://www.virtualoverapp.com/cms/285896/xscjs.html  
+游戏需上传到 **https://game.virtualoverapp.com**（上传包与图文步骤见 [deploy/星匣发布指南.md](deploy/星匣发布指南.md)）。
+
 ## 本地运行
 
 ```bash

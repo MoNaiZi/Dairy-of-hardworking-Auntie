@@ -1,6 +1,7 @@
 /* ============ 鹅腿阿姨创业日记 ============ */
 
 const $ = (id) => document.getElementById(id);
+const GITHUB_REPO = "https://github.com/super8848-AI/Dairy-of-hardworking-Auntie";
 
 const state = {
   honest: false,      // 是否买了正品鹅腿
@@ -381,11 +382,16 @@ function showUnlock() {
     : `你卖出了 10 根「鹅腿」，净赚 <b>¥${state.profit.toFixed(1)}</b>。<br>按这个速度，路虎的车钥匙已经在路上了……`;
   showModal(
     "🎉 解锁新副本：国贸",
-    summary + `<br><br><b style="font-size:20px">新游戏副本，敬请期待</b><br><span style="font-size:13px;color:#8a7a5c">下一站：把鹅腿卖给月薪三千的白领</span>`,
+    summary + `<br><br><b style="font-size:20px">新游戏副本，敬请期待</b><br><span style="font-size:13px;color:#8a7a5c">下一站：把鹅腿卖给月薪三千的白领</span><br><br><a href="${GITHUB_REPO}" target="_blank" rel="noopener noreferrer" style="color:#9e2b2b;font-size:14px">⭐ 玩得开心？去 GitHub 给作者点个 Star 吧</a>`,
     [
       {
         label: "继续在北大卖",
         onClick: () => setTimeout(nextCustomer, 800),
+      },
+      {
+        label: "⭐ GitHub 点 Star",
+        ghost: true,
+        onClick: () => window.open(GITHUB_REPO, "_blank", "noopener,noreferrer"),
       },
       {
         label: "重新开始",
