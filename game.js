@@ -1,10 +1,11 @@
 /* ============ 鹅腿阿姨创业日记 ============ */
 
 const $ = (id) => document.getElementById(id);
-const GITHUB_REPO = "https://github.com/super8848-AI/Dairy-of-hardworking-Auntie";
+const GITHUB_REPO =
+  "https://github.com/super8848-AI/Dairy-of-hardworking-Auntie";
 
 const state = {
-  honest: false,      // 是否买了正品鹅腿
+  honest: false, // 是否买了正品鹅腿
   costEach: 1.5,
   priceEach: 16,
   sold: 0,
@@ -73,7 +74,9 @@ const VAN_HTML = `
 
 /* ---------- 场景切换 ---------- */
 function showScene(id) {
-  document.querySelectorAll(".scene").forEach((s) => s.classList.remove("active"));
+  document
+    .querySelectorAll(".scene")
+    .forEach((s) => s.classList.remove("active"));
   $(id).classList.add("active");
 }
 
@@ -117,7 +120,9 @@ function renderAchievements() {
     return;
   }
   box.innerHTML = state.achievements
-    .map((a) => `<span class="ach-badge" title="${a.desc}">🏅 ${a.title}</span>`)
+    .map(
+      (a) => `<span class="ach-badge" title="${a.desc}">🏅 ${a.title}</span>`,
+    )
     .join("");
 }
 
@@ -132,8 +137,21 @@ function trafficDelay(ms) {
   return Math.max(180, Math.round(ms / state.footTrafficMult));
 }
 
+/* ================= 0. 背景音乐自动启动 ================= */
+(function initBGM() {
+  function tryPlay() {
+    Sound.playBGM();
+    document.removeEventListener("click", tryPlay);
+    document.removeEventListener("touchstart", tryPlay);
+  }
+  document.addEventListener("click", tryPlay);
+  document.addEventListener("touchstart", tryPlay);
+})();
+
 /* ================= 1. 标题 ================= */
-$("btn-start").onclick = () => showScene("scene-market");
+$("btn-start").onclick = () => {
+  showScene("scene-market");
+};
 
 /* ================= 2. 菜市场 ================= */
 function setMarketDialog(speaker, text) {
@@ -156,7 +174,7 @@ $("pick-duck").onclick = () => {
         },
       },
       { label: "再想想", ghost: true },
-    ]
+    ],
   );
 };
 
@@ -170,7 +188,10 @@ $("pick-goose").onclick = () => {
         onClick: () => {
           state.honest = true;
           state.costEach = 15;
-          setMarketDialog("鹅腿阿姨", "正品鹅腿15一根，卖16……图啥呢？图个心安吧。");
+          setMarketDialog(
+            "鹅腿阿姨",
+            "正品鹅腿15一根，卖16……图啥呢？图个心安吧。",
+          );
           setTimeout(() => startRide("home"), 1400);
         },
       },
@@ -181,7 +202,7 @@ $("pick-goose").onclick = () => {
           setMarketDialog("鹅腿阿姨", "嗯，朝阳区别野要紧。还是看看鸭腿吧……");
         },
       },
-    ]
+    ],
   );
 };
 
@@ -214,6 +235,7 @@ const PROCESS_STEPS = [
     duration: 3000,
     apply: (leg) => {
       $("machine").classList.add("running");
+      Sound.machineSound();
     },
     finish: (leg) => {
       $("machine").classList.remove("running");
@@ -252,14 +274,16 @@ function enterKitchen() {
   stepIndex = 0;
   if (state.honest) {
     // 良心模式：正品鹅腿不用造假，但阿姨还是要卤
-    PROCESS_STEPS[2].desc = "正品鹅腿本来就大，老老实实卤熟就行。阿姨看着锅，心里有点空：这锅……一分钱不赚啊。";
+    PROCESS_STEPS[2].desc =
+      "正品鹅腿本来就大，老老实实卤熟就行。阿姨看着锅，心里有点空：这锅……一分钱不赚啊。";
   }
   loadStep();
 }
 
 function loadStep() {
   const step = PROCESS_STEPS[stepIndex];
-  $("process-step").textContent = `第 ${stepIndex + 1} 步 / 共 ${PROCESS_STEPS.length} 步`;
+  $("process-step").textContent =
+    `第 ${stepIndex + 1} 步 / 共 ${PROCESS_STEPS.length} 步`;
   $("process-title").textContent = step.title;
   $("process-desc").textContent = step.desc;
   $("progress-fill").style.width = "0%";
@@ -299,11 +323,36 @@ $("btn-process").onclick = () => {
 /* ================= 5. 北大门口售卖 ================= */
 
 const STUDENTS = [
-  { name: "男同学", hair: "short", color: "#3f6fb5", ask: "阿姨，来根鹅腿！跑完晚自习就馋这口。" },
-  { name: "女同学", hair: "long", color: "#c75b8a", ask: "阿姨~ 还有鹅腿吗？给我留一根！" },
-  { name: "考研学长", hair: "short", color: "#4a8c5f", ask: "阿姨，一根鹅腿，今晚还要刷三套题。" },
-  { name: "社团学妹", hair: "long", color: "#8a6fc7", ask: "阿姨，听说你家鹅腿全北大第一！" },
-  { name: "留学生", hair: "short", color: "#c2762e", ask: "Auntie！Goose leg！One！谢谢！" },
+  {
+    name: "男同学",
+    hair: "short",
+    color: "#3f6fb5",
+    ask: "阿姨，来根鹅腿！跑完晚自习就馋这口。",
+  },
+  {
+    name: "女同学",
+    hair: "long",
+    color: "#c75b8a",
+    ask: "阿姨~ 还有鹅腿吗？给我留一根！",
+  },
+  {
+    name: "考研学长",
+    hair: "short",
+    color: "#4a8c5f",
+    ask: "阿姨，一根鹅腿，今晚还要刷三套题。",
+  },
+  {
+    name: "社团学妹",
+    hair: "long",
+    color: "#8a6fc7",
+    ask: "阿姨，听说你家鹅腿全北大第一！",
+  },
+  {
+    name: "留学生",
+    hair: "short",
+    color: "#c2762e",
+    ask: "Auntie！Goose leg！One！谢谢！",
+  },
 ];
 
 const AUNTIE_REPLIES = [
@@ -350,7 +399,9 @@ function say(bubbleId, name, text) {
   b.classList.remove("hidden");
 }
 function hideBubbles() {
-  ["bubble-student", "bubble-auntie", "bubble-think"].forEach((id) => $(id).classList.add("hidden"));
+  ["bubble-student", "bubble-auntie", "bubble-think"].forEach((id) =>
+    $(id).classList.add("hidden"),
+  );
 }
 
 function nextCustomer() {
@@ -383,6 +434,7 @@ function nextCustomer() {
 
   setTimeout(() => {
     say("bubble-student", s.name, s.ask);
+    Sound.studentChatter();
     $("btn-sell").classList.remove("hidden");
     $("btn-sell").disabled = false;
   }, trafficDelay(900));
@@ -391,10 +443,16 @@ function nextCustomer() {
 function playGreenScene() {
   setTimeout(() => {
     say("bubble-student", "女同学", "咦？阿姨……怎么这鹅腿是<b>绿色</b>的呀？");
+    Sound.studentChatter();
     setTimeout(() => {
-      say("bubble-auntie", "鹅腿阿姨", "用蔬菜汁腌的，纯天然！吃了还补维生素呢！");
+      say(
+        "bubble-auntie",
+        "鹅腿阿姨",
+        "用蔬菜汁腌的，纯天然！吃了还补维生素呢！",
+      );
       setTimeout(() => {
         say("bubble-student", "女同学", "哦哦，写写阿姨！");
+        Sound.studentChatter();
         $("btn-sell").classList.remove("hidden");
         $("btn-sell").disabled = false;
       }, trafficDelay(1800));
@@ -414,7 +472,11 @@ $("btn-sell").onclick = () => {
   floatMoney(gain);
 
   hideBubbles();
-  say("bubble-auntie", "鹅腿阿姨", AUNTIE_REPLIES[Math.floor(Math.random() * AUNTIE_REPLIES.length)]);
+  say(
+    "bubble-auntie",
+    "鹅腿阿姨",
+    AUNTIE_REPLIES[Math.floor(Math.random() * AUNTIE_REPLIES.length)],
+  );
 
   const stu = $("student-spot").querySelector(".student");
   if (stu) setTimeout(() => stu.classList.add("leave"), 700);
@@ -436,6 +498,7 @@ $("btn-sell").onclick = () => {
 };
 
 function floatMoney(gain) {
+  if (gain > 0) Sound.coinSound();
   const el = document.createElement("div");
   el.className = "float-money";
   el.textContent = gain > 0 ? `+¥${gain.toFixed(1)}` : "+¥0.0（图个心安）";
@@ -472,7 +535,7 @@ function showSpeechEvent() {
         ghost: true,
         onClick: () => location.reload(),
       },
-    ]
+    ],
   );
 }
 
@@ -482,7 +545,8 @@ function showUnlock() {
     : `你卖出了 10 根「鹅腿」，净赚 <b>¥${state.profit.toFixed(1)}</b>。<br>按这个速度，路虎的车钥匙已经在路上了……`;
   showModal(
     "🎉 解锁新副本：国贸",
-    summary + `<br><br><b style="font-size:20px">新游戏副本，敬请期待</b><br><span style="font-size:13px;color:#8a7a5c">下一站：把鹅腿卖给月薪三千的白领</span><br><br><span style="font-size:14px;color:#6b5b3e">⭐ 玩得开心？去 GitHub 点 Star：</span><br><a href="${GITHUB_REPO}" target="_blank" rel="noopener noreferrer" style="color:#9e2b2b;font-size:13px;word-break:break-all">${GITHUB_REPO}</a>`,
+    summary +
+      `<br><br><b style="font-size:20px">新游戏副本，敬请期待</b><br><span style="font-size:13px;color:#8a7a5c">下一站：把鹅腿卖给月薪三千的白领</span><br><br><span style="font-size:14px;color:#6b5b3e">⭐ 玩得开心？去 GitHub 点 Star：</span><br><a href="${GITHUB_REPO}" target="_blank" rel="noopener noreferrer" style="color:#9e2b2b;font-size:13px;word-break:break-all">${GITHUB_REPO}</a>`,
     [
       {
         label: "继续在北大卖",
@@ -491,13 +555,14 @@ function showUnlock() {
       {
         label: "⭐ GitHub 点 Star",
         ghost: true,
-        onClick: () => window.open(GITHUB_REPO, "_blank", "noopener,noreferrer"),
+        onClick: () =>
+          window.open(GITHUB_REPO, "_blank", "noopener,noreferrer"),
       },
       {
         label: "重新开始",
         ghost: true,
         onClick: () => location.reload(),
       },
-    ]
+    ],
   );
 }
