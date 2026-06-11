@@ -281,7 +281,7 @@ body {
   color: #173848;
 }
 .cart-rig .box::after {
-  content: "¥15/根";
+  content: "¥16/根";
   position: absolute; left: 0; right: 0; bottom: 6px;
   text-align: center; font-size: 13px; font-weight: 900; color: #9e2b2b;
 }

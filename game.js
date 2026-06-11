@@ -5,7 +5,7 @@ const $ = (id) => document.getElementById(id);
 const state = {
   honest: false,      // 是否买了正品鹅腿
   costEach: 1.5,
-  priceEach: 15,
+  priceEach: 16,
   sold: 0,
   profit: 0,
   unlockShown: false,
@@ -90,7 +90,7 @@ $("pick-duck").onclick = () => {
         onClick: () => {
           state.honest = false;
           state.costEach = 1.5;
-          setMarketDialog("鹅腿阿姨", "鸭腿才1.5一根，卖15……这账，越算越香。");
+          setMarketDialog("鹅腿阿姨", "鸭腿才1.5一根，卖16……这账，越算越香。");
           setTimeout(() => startRide("home"), 1400);
         },
       },
@@ -109,7 +109,7 @@ $("pick-goose").onclick = () => {
         onClick: () => {
           state.honest = true;
           state.costEach = 15;
-          setMarketDialog("鹅腿阿姨", "正品鹅腿15一根，卖15……图啥呢？图个心安吧。");
+          setMarketDialog("鹅腿阿姨", "正品鹅腿15一根，卖16……图啥呢？图个心安吧。");
           setTimeout(() => startRide("home"), 1400);
         },
       },
@@ -246,13 +246,13 @@ const AUNTIE_REPLIES = [
   "好嘞！刚出锅的「鹅腿」，又肥又大！",
   "拿好咯，趁热吃，凉了就不香了！",
   "同学慢用啊，明天还来这个点儿！",
-  "一根15，扫码现金都行！",
+  "一根16，扫码现金都行！",
 ];
 
 const THOUGHTS = [
-  "一天卖1000根，一根赚13.5，就是13500……",
-  "一年上四休三，干208天，一共280万！",
-  "280万……儿子的路虎，稳了。",
+  "一天卖1000根，一根赚14.5，就是14500……",
+  "一年上四休三，干208天，一共300万！",
+  "300万……儿子的路虎，稳了。",
 ];
 
 let customerTimer = null;
@@ -377,7 +377,7 @@ function floatMoney(gain) {
 
 function showUnlock() {
   const summary = state.honest
-    ? `你卖出了 10 根<b>正品鹅腿</b>，收益 <b>¥0</b>。<br>阿姨叹了口气：良心摊主，赚不到路虎，但睡得着觉。`
+    ? `你卖出了 10 根<b>正品鹅腿</b>，收益 <b>¥${state.profit.toFixed(1)}</b>。<br>阿姨叹了口气：良心摊主，路虎还是买不起，但睡得着觉。`
     : `你卖出了 10 根「鹅腿」，净赚 <b>¥${state.profit.toFixed(1)}</b>。<br>按这个速度，路虎的车钥匙已经在路上了……`;
   showModal(
     "🎉 解锁新副本：国贸",
